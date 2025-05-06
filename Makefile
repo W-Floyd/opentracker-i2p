@@ -59,6 +59,11 @@ HEADERS=trackerlogic.h scan_urlencoded_query.h ot_mutex.h ot_stats.h ot_vector.h
 SOURCES=opentracker.c trackerlogic.c scan_urlencoded_query.c ot_mutex.c ot_stats.c ot_vector.c ot_clean.c ot_udp.c ot_iovec.c ot_fullscrape.c ot_accesslist.c ot_http.c ot_livesync.c ot_rijndael.c sha256.c
 SOURCES_proxy=proxy.c ot_vector.c ot_mutex.c
 
+ifneq ($(WANT_I2P),1)
+	HEADERS += base64.h sha256.h
+	SOURCES += sha256.c
+endif
+
 OBJECTS = $(SOURCES:%.c=%.o)
 OBJECTS_debug = $(SOURCES:%.c=%.debug.o)
 OBJECTS_proxy = $(SOURCES_proxy:%.c=%.o)
